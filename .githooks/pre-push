@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# ------------------- Compile Maven Project -------------------- #
+
+#changes directory to glide-template and runs mvn clean verify
+
+CWD=`pwd`
+
+# Get the path of the files which are getting modified
+# need to write code
+
+# Move to the project directory which you want to compile
+
+echo '-------------------- MAVEN TEST-COMPILE STARTED -----------------------------'
+printf "\n\n"
+
+# MAVEN_COMPILATION_LOG=$(mvn test-compile)
+# echo "$MAVEN_COMPILATION_LOG"
+mvn test-compile
+if [ $? -ne 0 ]; then
+  cd $CWD
+  echo 'Git Push [ABORTED] >-----------> because of existing issues, Please check logs!'
+  exit 1
+else
+    printf "\n\n"
+    echo 'Compilation Status: No issues found >--------------------------> [SUCCESSFUL]'
+    echo 'Git Push >-----------------------------------------------------> [SUCCESSFUL]'
+    printf '\n\n'
+fi
+cd $CWD

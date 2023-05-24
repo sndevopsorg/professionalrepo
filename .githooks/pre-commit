@@ -1,0 +1,21 @@
+#!/bin/bash
+source .githooks/helperScripts/fileChecks.sh
+
+pwd
+.githooks/helperScripts/fileChecks.sh;
+echo "pre-commit TOTAL_WARNINGS_COUNT = " $TOTAL_WARNINGS_COUNT
+if [[ $TOTAL_WARNINGS_COUNT != 0 ]];
+then
+
+    echo 'THERE ARE FILE SCAN WARNINGS PRESENT. DO YOU WISH TO ABORT THE COMMIT? (Y/N):\n'
+    read commitAbortionFlag
+    if [[ ${commitAbortionFlag} == "y"  ||  ${commitAbortionFlag} == "yes" ]];
+    then
+        echo "[ABORTING] Commit ...................."
+        exit 1
+    else
+        echo "Proceeding to commit ................."
+    fi
+else
+    echo 'Wohoo! SUCCESS! No File Scans Warnings Present! :)'
+fi
