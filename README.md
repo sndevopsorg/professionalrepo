@@ -234,7 +234,7 @@ This project contains a Maven project with tests. Git-Hooks are configured and b
 
 ### Setup
 * Fire Below command inside the project directory ::
-    ```sh
+    ```shsf
     make
     ```#test
    
